@@ -1,12 +1,17 @@
 # yaml-language-server: $schema=https://json.schemastore.org/clang-format-21.x.json
 ---
 BasedOnStyle: WebKit
+BreakBeforeBraces: Allman
+
 IndentWidth: 2
-BreakBeforeBraces: Attach
-IndentCaseLabels: true
-AlignAfterOpenBracket: BlockIndent
+TabWidth: 2
 ContinuationIndentWidth: 2
-BinPackArguments: false
-BinPackParameters: OnePerLine
-Cpp11BracedListStyle: false
+UseTab: ForContinuationAndIndentation
+IndentCaseLabels: true
+
+SpaceAfterCStyleCast: true
+
+AllowShortFunctionsOnASingleLine: None
+
+ColumnLimit: 120
 ---
