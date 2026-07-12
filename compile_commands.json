@@ -1,0 +1,92 @@
+[
+  {
+    "file": "main.c",
+    "arguments": [
+      "/usr/bin/clang",
+      "-Wall",
+      "-Wextra",
+      "-std=c99",
+      "main.c",
+      "-o",
+      "build/main",
+      "-pthread"
+    ],
+    "directory": "/home/dzyanino/Projects/C/git-ahh-ui",
+    "output": "build/main"
+  },
+  {
+    "file": "include/utils/clay_string.c",
+    "arguments": [
+      "/usr/bin/clang",
+      "-Wall",
+      "-Wextra",
+      "-std=c99",
+      "include/utils/clay_string.c",
+      "-o",
+      "build/main",
+      "-pthread"
+    ],
+    "directory": "/home/dzyanino/Projects/C/git-ahh-ui",
+    "output": "build/main"
+  },
+  {
+    "file": "include/pages/welcome/welcome.c",
+    "arguments": [
+      "/usr/bin/clang",
+      "-Wall",
+      "-Wextra",
+      "-std=c99",
+      "include/pages/welcome/welcome.c",
+      "-o",
+      "build/main",
+      "-pthread"
+    ],
+    "directory": "/home/dzyanino/Projects/C/git-ahh-ui",
+    "output": "build/main"
+  },
+  {
+    "file": "include/components/item/item.c",
+    "arguments": [
+      "/usr/bin/clang",
+      "-Wall",
+      "-Wextra",
+      "-std=c99",
+      "include/components/item/item.c",
+      "-o",
+      "build/main",
+      "-pthread"
+    ],
+    "directory": "/home/dzyanino/Projects/C/git-ahh-ui",
+    "output": "build/main"
+  },
+  {
+    "file": "include/components/button/button.c",
+    "arguments": [
+      "/usr/bin/clang",
+      "-Wall",
+      "-Wextra",
+      "-std=c99",
+      "include/components/button/button.c",
+      "-o",
+      "build/main",
+      "-pthread"
+    ],
+    "directory": "/home/dzyanino/Projects/C/git-ahh-ui",
+    "output": "build/main"
+  },
+  {
+    "file": "include/theme/colors.c",
+    "arguments": [
+      "/usr/bin/clang",
+      "-Wall",
+      "-Wextra",
+      "-std=c99",
+      "include/theme/colors.c",
+      "-o",
+      "build/main",
+      "-pthread"
+    ],
+    "directory": "/home/dzyanino/Projects/C/git-ahh-ui",
+    "output": "build/main"
+  }
+]
