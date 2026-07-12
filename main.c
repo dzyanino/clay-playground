@@ -1,3 +1,4 @@
+#include <raylib.h>
 #define CLAY_IMPLEMENTATION // ok so first the clay implementation macro
 
 #include "lib/clay.h" // then import clay just after
@@ -7,6 +8,7 @@
 #include "include/theme/fonts.h"
 
 #include "include/pages/welcome/welcome.h"
+#include "include/components/item/item.h"
 
 void HandleClayErrors(Clay_ErrorData error_data)
 {
@@ -39,19 +41,23 @@ int main(void)
 		// and the error handler (catcher)
 
 	Font fonts[FONT_COUNT];
-	fonts[0] = LoadFontEx("assets/fonts/BricolageGrotesque-Regular.ttf", 48, 0, 0);
-	fonts[1] = LoadFontEx("assets/fonts/BricolageGrotesque-SemiBold.ttf", 48, 0, 0);
-	fonts[2] = LoadFontEx("assets/fonts/BricolageGrotesque-Bold.ttf", 48, 0, 0);
-	fonts[3] = LoadFontEx("assets/fonts/Fraunces-Bold.ttf", 48, 0, 0);
-	fonts[4] = LoadFontEx("assets/fonts/Fraunces-Italic.ttf", 48, 0, 0);
-	fonts[5] = LoadFontEx("assets/fonts/SpaceMono-Regular.ttf", 48, 0, 0);
-	fonts[6] = LoadFontEx("assets/fonts/SpaceMono-Bold.ttf", 48, 0, 0);
-	fonts[7] = LoadFontEx("assets/fonts/SpaceMono-Italic.ttf", 48, 0, 0);
+  fonts[0] = LoadFontEx("assets/fonts/BricolageGrotesque-Regular.ttf", 48, 0, 0);
+  fonts[1] = LoadFontEx("assets/fonts/BricolageGrotesque-SemiBold.ttf", 48, 0, 0);
+  fonts[2] = LoadFontEx("assets/fonts/BricolageGrotesque-Bold.ttf", 48, 0, 0);
+  fonts[3] = LoadFontEx("assets/fonts/Fraunces-Bold.ttf", 48, 0, 0);
+  fonts[4] = LoadFontEx("assets/fonts/Fraunces-Italic.ttf", 48, 0, 0);
+  fonts[5] = LoadFontEx("assets/fonts/SpaceMono-Regular.ttf", 48, 0, 0);
+  fonts[6] = LoadFontEx("assets/fonts/SpaceMono-Bold.ttf", 48, 0, 0);
+  fonts[7] = LoadFontEx("assets/fonts/SpaceMono-Italic.ttf", 48, 0, 0);
 
-	for (int i = 0; i < FONT_COUNT; i++)
-	{
-		SetTextureFilter(fonts[i].texture, TEXTURE_FILTER_BILINEAR);
-	} // fix graininess in text when put below the fontSize of the LoadFont function's fontSize parameter
+  fonts[8]  = LoadFontEx("assets/fonts/BricolageGrotesque-Regular.ttf", 14, 0, 0);
+  fonts[9]  = LoadFontEx("assets/fonts/BricolageGrotesque-SemiBold.ttf", 14, 0, 0);
+  fonts[10] = LoadFontEx("assets/fonts/SpaceMono-Regular.ttf", 16, 0, 0);
+
+  for (int i = 0; i < FONT_COUNT; i++)
+  {
+    SetTextureFilter(fonts[i].texture, TEXTURE_FILTER_BILINEAR);
+  } // fix graininess in text when put below the fontSize of the LoadFont function's fontSize parameter
 
 	Clay_SetMeasureTextFunction(Raylib_MeasureText, fonts);
 	// call this function to tell clay how to properly size the fonts
@@ -90,6 +96,7 @@ int main(void)
               .width = CLAY_SIZING_GROW(0),
               .height = CLAY_SIZING_GROW(0)
             },
+            .layoutDirection = CLAY_LEFT_TO_RIGHT,
             .padding = CLAY_PADDING_ALL(16),
             .childGap = 16,
           },
@@ -98,6 +105,36 @@ int main(void)
       )
 		{
 			PageWelcome();
+
+			CLAY(
+        CLAY_ID("demo-repo-list"),
+        {
+          .layout = {
+            .sizing = {
+              .width = CLAY_SIZING_FIXED(400),
+              .height = CLAY_SIZING_GROW(0)
+            },
+            .layoutDirection = CLAY_TOP_TO_BOTTOM,
+            .childGap = 4,
+            .padding = CLAY_PADDING_ALL(12)
+          },
+          .backgroundColor = theme_colors[M_COLOR_BACKGROUND],
+          .cornerRadius = 5
+        }
+      ) {
+        CLAY_TEXT(CLAY_STRING("Recent repositories"), {
+          .fontId = M_FONT_SEMIBOLD, .fontSize = 18, .textColor = theme_colors[M_COLOR_TEXT_WHITE]
+        });
+
+        int disabled_1 = 0;
+        ComponentItem("demo-repo-1", "git-ahh-ui", "main", "~/Projects/C/git-ahh-ui", "Updated 2h ago", M_VARIANT_SOLID, M_COLOR_PRIMARY, &disabled_1, NULL);
+
+        int disabled_2 = 1;
+        ComponentItem("demo-repo-2", "my-other-project", "develop", "~/Projects/C/my-other-project", "Updated 5h ago", M_VARIANT_SOLID, M_COLOR_SECONDARY, &disabled_2, NULL);
+
+        int disabled_3 = 0;
+        ComponentItem("demo-repo-3", "archived-project", "master", "~/Projects/archived", "Updated 2 years ago", M_VARIANT_OUTLINE, M_COLOR_BORDER, &disabled_3, NULL);
+      }
 		}
 
 		Clay_RenderCommandArray render_commands = Clay_EndLayout(delta_time);
