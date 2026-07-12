@@ -1,5 +1,5 @@
-#ifndef VARIANTS_H
-#define VARIANTS_H
+#ifndef M_VARIANTS_H
+#define M_VARIANTS_H
 
 #include <stdint.h>
 
