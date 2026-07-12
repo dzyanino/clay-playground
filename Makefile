@@ -1,6 +1,6 @@
-CC = gcc
+CC = clang
 CFLAGS = -Wall -Wextra -std=c99
-LIBS = -lraylib -lGL -lm -lpthread -ldl -lrt
+LIBS = -lraylib -lGL -lm -pthread -ldl -lrt
 
 TARGET_DIR = build
 TARGET = $(TARGET_DIR)/main
